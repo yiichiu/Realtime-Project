@@ -3,6 +3,7 @@
 # A reducer program for wiki indexing.
 import sys
 import math
+from sets import Set
 
 # input comes from STDIN
 for line in sys.stdin:
@@ -10,22 +11,18 @@ for line in sys.stdin:
   line = line.strip()
   
   # parse the input we got from mapper.py
-  word, doc = line.split('\t', 1)
-  docs = doc.split(',')
-  
-  # count docs
+  word, docs = line.split('\t', 1)
   lists = {}
   for doc in docs:
     try:
-      lists[doc] += 1
+		  lists[doc] += 1
     except:
       lists[doc] = 1
   
   invlist = []
   
   #N
-  N = 1000
-  
+  N = len(Set(docs))
   
   # build inverted lists
   for doc in lists:
