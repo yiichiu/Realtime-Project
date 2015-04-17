@@ -12,7 +12,8 @@ def parse_hyperlink(filename):
         data = infile.read().replace('\n', ' ')
 
     tree = html.fromstring(data)
-    linklist = tree.xpath('//a')
+    linklist = tree.xpath('./body//p//a')
+    linklist.extend(tree.xpath("./body//table[@class='infobox vcard']//a"))
     urls = []
 
     for link in linklist:
@@ -23,4 +24,4 @@ def parse_hyperlink(filename):
                     print '%s\t%s' % ( name, filename.split('/')[-1] )
     
 
-parse_hyperlink('../wiki/YouTube')
+parse_hyperlink('../wiki/Google')
