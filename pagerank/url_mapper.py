@@ -1,5 +1,6 @@
 from lxml import html
 import urlparse
+import sys
 
 def parse_hyperlink(filename):
     wiki_names = set([])
