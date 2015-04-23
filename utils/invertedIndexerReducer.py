@@ -24,7 +24,7 @@ for line in sys.stdin:
   #N
   N = len(Set(docs))
   
-  # build inverted lists
+# build inverted lists
   for doc in lists:
     #a:5 b:10
     data = doc + '\t' +str(lists[doc] * math.log(N/len(lists)))
