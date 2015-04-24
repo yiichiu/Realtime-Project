@@ -20,8 +20,8 @@ def parse_hyperlink(filename):
                 if name in wiki_names:
                     name_set.add(name)
     for name in name_set:
-        print '%s ' %(name),
-    print '%f' %(initial_weight)
+        print '%s' %(name),
+    print '%.10f' %(initial_weight)
     
 
 wiki_names = set([])
