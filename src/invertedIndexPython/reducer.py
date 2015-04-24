@@ -11,24 +11,24 @@ lists = {}
 for line in sys.stdin:
   # remove leading and trailing whitespace
   line = line.strip()
-
   # parse the input we got from mapper.py
-  word, doc = line.split('\t', 1)
-  if pre_word == None or word == pre_word:
-    try:
-      lists[doc] += 1
-    except:
-      lists[doc] = 1
-  else:
+  word, docid = line.split('\t', 1)
+  #output 
+  if pre_word != None and word != pre_word:
     invlist = []
     #N
-    N = len(lists)
-
+    N = 5
+    
     # build inverted lists
     for doc in lists:
       #a:5 b:10
-      data = doc + '\t' +str(float(lists[doc]) * math.log(N/lists[doc]))
+      data = doc + '\t' +str(float(lists[doc]) * math.log(float(N)/len(lists)))
       invlist.append(data)
-    print '%s\t%s' % (word, invlist)
-    list = {}
+    print '%s\t%s' % (pre_word, invlist)
+    lists = {}
+
+  try:
+     lists[docid] += 1
+  except:
+     lists[docid] = 1
   pre_word = word
