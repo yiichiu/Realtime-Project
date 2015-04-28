@@ -1,0 +1,68 @@
+import tornado.ioloop
+import sys
+import tornado.web
+import hashlib
+import getpass
+import socket
+import tornado.gen
+import tornado.httpclient
+import json
+import urllib
+from sets import Set
+import cPickle as pickle
+from tornado.ioloop import IOLoop
+from tornado import web, gen, process, httpserver, httpclient, netutil
+from collections import Counter
+from nltk.tokenize import RegexpTokenizer
+from math import log10
+import subprocess
+import argparse
+import os
+from  xml.etree import ElementTree
+
+fileNames = []
+mapTaskIds = []
+args = None
+
+def parseParams():
+  parser = argparse.ArgumentParser(description='mapreduce framework')
+  requiredArgs = ['--jobPath', '--numPartitions'] 
+  parser.add_argument('xmlFileName')
+  for arg in requiredArgs:
+    parser.add_argument('%s' % arg, required=True)
+  return parser.parse_args()
+
+def readXML():
+  f = open('%s' % args.xmlFileName, 'r')
+  result = f.read()
+  print '-----finish reading %s-----' % args.xmlFileName
+  return result
+def partition():
+  tree = ElementTree.parse('%s' % args.xmlFileName)
+  root = tree.getroot()
+  NS = '{http://www.mediawiki.org/xml/export-0.10/}'
+  numPartitions = int(args.numPartitions)
+  trees = []
+  for i in xrange(numPartitions):
+    elem = ElementTree.Element('xml')
+    trees.append(elem)
+  cnt =0
+  for page in root.findall(NS + 'page'):
+    page.set('docid', str(cnt))
+    trees[cnt%numPartitions].append(page)
+    cnt += 1
+  for i in xrange(numPartitions):
+    filename = '%s/%d.in' % (args.jobPath, i)
+    print 'writing %s' % filename
+    ElementTree.ElementTree(trees[i]).write(filename)
+    print 'finish writing %s' % filename
+
+if __name__ == "__main__":
+  args = parseParams()
+  print '\n-----reading files from %s-----' % args.xmlFileName
+  readXML()
+  print '\n-----partitioning files to %s .in files-----' % \
+        args.numPartitions
+  partition()
+  print '\n-----JOB SUCCESS-----'
+
