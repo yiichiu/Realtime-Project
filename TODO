@@ -1,0 +1,8 @@
+1. Extract data and split it into N partitions
+2. Built inverted index
+3. Build document store
+4. Calculate idf
+5. Calculate pagerank
+6. Build search engine
+7. Build semantic search engine
+8. Deploy on AWS 
