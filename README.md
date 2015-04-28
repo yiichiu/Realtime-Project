@@ -9,3 +9,4 @@ Data used
 To Do
 1. Build inverted index for documents
 
+sh test.sh Google
