@@ -10,11 +10,22 @@ Build a search engine with semantic results
 * 2015-04-24 13:31:37 done All pages, current versions only.
 
 #Reformat input files into N partitions
+Before partitioning, you might need to install the following argparse first
+```bash
+yum install python-argparse
+```
 
 ##Command:
 ```bash
 sh reformat_all.sh numberOfMapper
 
 ```
+#Run indexer on hadoop cluster
+Before running, you might need to install the following package
+nltk
 
+##Command:
+```
+sh runHadoop.sh src/invertedIndexBuilder
+```
 

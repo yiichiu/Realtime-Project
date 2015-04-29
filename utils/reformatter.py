@@ -1,19 +1,11 @@
-import tornado.ioloop
 import sys
-import tornado.web
 import hashlib
 import getpass
 import socket
-import tornado.gen
-import tornado.httpclient
 import json
 import urllib
 from sets import Set
 import cPickle as pickle
-from tornado.ioloop import IOLoop
-from tornado import web, gen, process, httpserver, httpclient, netutil
-from collections import Counter
-from nltk.tokenize import RegexpTokenizer
 from math import log10
 import subprocess
 import argparse
@@ -54,7 +46,7 @@ def partition():
   for i in xrange(numPartitions):
     filename = '%s/%d.in' % (args.jobPath, i)
     print 'writing %s' % filename
-    ElementTree.ElementTree(trees[i]).write(filename)
+    ElementTree.ElementTree(trees[i]).write(filename,encoding="UTF-8")
     print 'finish writing %s' % filename
 
 if __name__ == "__main__":

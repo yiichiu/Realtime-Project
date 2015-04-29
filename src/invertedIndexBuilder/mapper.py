@@ -4,7 +4,6 @@ import sys
 import xml.etree.ElementTree as ET
 import nltk
 from nltk.tokenize import RegexpTokenizer
-from collections import Counter
 #read xml from stdin
 NS = '{http://www.mediawiki.org/xml/export-0.10/}'
 tree = ET.parse(sys.stdin)
@@ -19,9 +18,12 @@ for page in root.findall(NS + 'page'):
     docid = page.get('docid')
     tokens = tokenizer.tokenize('%s %s %s' % (text, title, title))
     #count tf
-    cnt = Counter()
+    cnt = {}
     for word in tokens:
-      cnt[word] += 1
+      try:
+        cnt[word] += 1
+      except:
+        cnt[word] = 1
     #output pairs
     for word in cnt:
       word = word.encode('utf8')

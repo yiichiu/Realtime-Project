@@ -17,4 +17,5 @@ for line in sys.stdin:
     dic[term] = {docId:tf}
 
   #print '%s %s' % (term, str(dic[term]))
-print pickle.dumps(dic)
+for word in dic:
+  print '%s\t%s' % ( word, dic[word] )
