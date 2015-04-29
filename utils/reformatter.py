@@ -43,6 +43,9 @@ def partition():
     page.set('docid', str(cnt))
     trees[cnt%numPartitions].append(page)
     cnt += 1
+  # add folder
+  if not os.path.exists(args.jobPath):
+    os.makedirs(args.jobPath) 
   for i in xrange(numPartitions):
     filename = '%s/%d.in' % (args.jobPath, i)
     print 'writing %s' % filename
