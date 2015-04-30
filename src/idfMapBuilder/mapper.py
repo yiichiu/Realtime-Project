@@ -4,7 +4,6 @@ import sys
 import xml.etree.ElementTree as ET
 import nltk
 from nltk.tokenize import RegexpTokenizer
-from collections import Counter
 from sets import Set
 #read xml from stdin
 NS = '{http://www.mediawiki.org/xml/export-0.10/}'

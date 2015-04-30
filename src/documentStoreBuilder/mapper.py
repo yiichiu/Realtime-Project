@@ -4,7 +4,6 @@ import sys
 import xml.etree.ElementTree as ET
 import nltk
 from nltk.tokenize import RegexpTokenizer
-from collections import Counter
 import pickle
 import json
 import urllib
