@@ -8,7 +8,7 @@ from sets import Set
 import cPickle as pickle
 from math import log10
 import subprocess
-import argparse
+#import argparse
 import os
 from  xml.etree import ElementTree
 
@@ -22,6 +22,7 @@ fileNames = []
 mapTaskIds = []
 args = Arguments()
 
+'''
 def parseParams():
   parser = argparse.ArgumentParser(description='mapreduce framework')
   requiredArgs = ['--jobPath', '--numPartitions'] 
@@ -29,6 +30,7 @@ def parseParams():
   for arg in requiredArgs:
     parser.add_argument('%s' % arg, required=True)
   return parser.parse_args()
+'''
 
 def readXML():
   f = open('%s' % args.xmlFileName, 'r')
