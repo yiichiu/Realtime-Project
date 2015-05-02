@@ -8,7 +8,7 @@ from sets import Set
 import cPickle as pickle
 from math import log10
 import subprocess
-#import argparse
+import argparse
 import os
 from  xml.etree import ElementTree
 
@@ -22,7 +22,6 @@ fileNames = []
 mapTaskIds = []
 args = Arguments()
 
-'''
 def parseParams():
   parser = argparse.ArgumentParser(description='mapreduce framework')
   requiredArgs = ['--jobPath', '--numPartitions'] 
@@ -30,7 +29,6 @@ def parseParams():
   for arg in requiredArgs:
     parser.add_argument('%s' % arg, required=True)
   return parser.parse_args()
-'''
 
 def readXML():
   f = open('%s' % args.xmlFileName, 'r')
@@ -62,10 +60,7 @@ def partition():
     print 'finish writing %s' % filename
 
 if __name__ == "__main__":
-  #args = parseParams()
-  args.jobPath = '../data/input'
-  args.numPartitions = 4
-  args.xmlFileName = '../data/strategywiki_current.xml'
+  args = parseParams()
   print '\n-----reading files from %s-----' % args.xmlFileName
   readXML()
   print '\n-----partitioning files to %s .in files-----' % \
