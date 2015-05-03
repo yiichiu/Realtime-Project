@@ -14,7 +14,7 @@ for line in sys.stdin:
   try:
     dic[term][docId] = tf
   except:
-    dic[term] = {docId:tf}
+    dic[term] = {str(docId):str(tf)}
 
   #print '%s %s' % (term, str(dic[term]))
 for word in dic:
