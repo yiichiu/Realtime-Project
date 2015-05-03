@@ -18,5 +18,5 @@ for line in sys.stdin:
 #calculate idf
 for term in cnt:
   idf[term] = math.log(len(cnt) / float(cnt[term]))
-  print '%s %f' % ( term, idf[term])
+  print '%s\t%f' % ( term, idf[term])
 #print pickle.dumps(idf)
