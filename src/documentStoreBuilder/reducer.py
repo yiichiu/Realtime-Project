@@ -14,5 +14,6 @@ for line in sys.stdin:
   text =  urllib.unquote(text)
   url =  urllib.unquote(url)
   docStore[int(docid)] = {'title':title, 'text':text, 'url':url}
-print docStore
+for docid in docStore:
+  print docStore[docid]
 #print pickle.dumps(docStore)
