@@ -4,6 +4,7 @@ import sys
 import xml.etree.ElementTree as ET
 import nltk
 from nltk.tokenize import RegexpTokenizer
+from nltk.corpus import stopwords
 import pickle
 import json
 import urllib
@@ -22,10 +23,19 @@ for page in root.findall(NS + 'page'):
     docid = page.get('docid')
   
     #encode title and body
-    text = urllib.quote(text.encode('utf8'))
+    #text = urllib.quote(text.encode('utf8'))
+    tokens = tokenizer.tokenize(text)
+    #remove stopwords
+    stopwords = nltk.corpus.stopwords.words('english')
+    content = [w for w in tokens if w.lower() not in stopwords]
+    newText = ''
+    for token in content:
+      newText += ' ' + token
+    text = urllib.quote(newText.encode('utf-8'))
     title = urllib.quote(title.encode('utf8'))
     url = urllib.quote(url.encode('utf8'))
     #output pairs
     print "%s\t%s,%s,%s" % ( docid, title, text, url)
+    #print "%s\t%s,%s,%s" % ( docid, title, newText, url)
   except:
     pass
