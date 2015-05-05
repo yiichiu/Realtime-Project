@@ -3,14 +3,16 @@ import sys
 import nltk
 from pyspark import SparkContext
 
+path = 'data/localResult'
+
 sc = SparkContext(appName="Query")
-tf = sc.textFile("realtime/tf_file")
+tf = sc.textFile("%s/invertedIndexBuilder/part-00000" % path)
 tf_pairs = tf.map(lambda x: (x.split("\t")[0], x.split("\t")[1]))
 
-idf = sc.textFile("realtime/idf_file")
+idf = sc.textFile("%s/idfMapBuilder/part-00000" % path)
 idf_pairs = idf.map(lambda x: (x.split("\t")[0], float(x.split("\t")[1])))
 
-fileContent = sc.textFile("realtime/content_file")
+fileContent = sc.textFile("%s/documentStoreBuilder/part-00000" % path)
 content_pairs = fileContent.map(lambda x: (int(x.split("\t")[0]), eval(x.split("\t")[1])))
 docID_to_content = dict(content_pairs.map(lambda (k,v): (k, v['title'])).collect())
 
@@ -59,8 +61,9 @@ def get_document_id(phrase_to_search):
     top_new_all_docs = [k for (k,v) in reversed(sorted(new_all_docs, key=lambda x:x[1])[max(-10, -len(new_all_docs)):])]
     return top_docs, top_words, top_new_all_docs
 
-phrase_to_search = str(raw_input("Please enter your query (EXIT to stop): "))
-#phrase_to_search = 'batman joker'
+#phrase_to_search = str(raw_input("Please enter your query (EXIT to stop): "))
+#print "you entered %s" % (phrase_to_search)
+phrase_to_search = 'batman'
 while phrase_to_search != 'EXIT':
     top_docs, top_words, semantic_top_docs = get_document_id(phrase_to_search)
     print top_docs

@@ -27,6 +27,8 @@ for page in root.findall(NS + 'page'):
     tokens = tokenizer.tokenize(text)
     #remove stopwords
     stopwords = nltk.corpus.stopwords.words('english')
+    moreSW = ['wwww', 'web', 'ref', 'cite', 'http', 'br', 'url', 'com']
+    stopwords += moreSW
     content = [w for w in tokens if w.lower() not in stopwords]
     newText = ''
     for token in content:
