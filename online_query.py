@@ -63,7 +63,7 @@ def get_document_id(phrase_to_search):
 
 #phrase_to_search = str(raw_input("Please enter your query (EXIT to stop): "))
 #print "you entered %s" % (phrase_to_search)
-phrase_to_search = 'batman'
+phrase_to_search = 'staples'
 while phrase_to_search != 'EXIT':
     top_docs, top_words, semantic_top_docs = get_document_id(phrase_to_search)
     print top_docs
