@@ -36,6 +36,43 @@ spark-submit --master local[4] online_query.py
 
 ```
 
+#Result
+##Smaller dataset (~200MB)
+* Query: Batman
+  * 
+```
+First  Pass:
+  [3104, 3107, 3109, 3106, 3105, 3110, 2781, 6308, 3158, 4740]
+  3104 Batman (1989 film)
+  3107 Batman & Robin (film)
+  3109 Batman: Year One
+  3106 Batman Returns
+  3105 Batman (1966 film)
+  3110 Talk:Batman
+  2781 Blackadder
+  6308 Daily Planet
+  3158 Barry Goldwater
+  4740 Cyborgs in fiction
+
+Key terms:
+  set(['catwoman', 'series', 'one', 'states', 'year', 'burton', 'film', 'category', 'joker', 'united', 'accessdate', 'barry', 'goldwater', 'gotham', 'ya', 'batman', 'cyborg', 'date', 'news', 'penguin', 'blackadder', 'name', 'comics', 'work', 'daily', 'planet', '2008', 'warner', 'robin', 'first'])
+
+Second pass:
+  [3104, 3106, 2763, 2781, 7100, 4497, 3622, 6105, 3314, 5835]
+  3104 Batman (1989 film)
+  3106 Batman Returns
+  2763 British National Party
+  2781 Blackadder
+  7100 EastEnders
+  4497 Cleveland Browns
+  3622 Columbia River
+  6105 Don't ask, don't tell
+  3314 Ballarat
+  5835 David Letterman
+```
+##Larger dataset (~600MB)
+
+
 # MapReduce Jobs
 ## Data Processing
   We preprocess the xml data by assigning each page a document id and splitting them into approximately 20 partitions. 
