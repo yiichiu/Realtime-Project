@@ -41,34 +41,52 @@ spark-submit --master local[4] online_query.py
 * Query: Batman
   * 
 ```
-First  Pass:
-  [3104, 3107, 3109, 3106, 3105, 3110, 2781, 6308, 3158, 4740]
-  3104 Batman (1989 film)
-  3107 Batman & Robin (film)
-  3109 Batman: Year One
-  3106 Batman Returns
-  3105 Batman (1966 film)
-  3110 Talk:Batman
-  2781 Blackadder
-  6308 Daily Planet
-  3158 Barry Goldwater
-  4740 Cyborgs in fiction
+[3104, 3107, 3109, 3106, 3105, 3110, 2781, 6308, 3158, 4740]
+3104 Batman (1989 film)
+3107 Batman & Robin (film)
+3109 Batman: Year One
+3106 Batman Returns
+3105 Batman (1966 film)
+3110 Talk:Batman
+2781 Blackadder
+6308 Daily Planet
+3158 Barry Goldwater
+4740 Cyborgs in fiction
+set(['catwoman', 'goldwater', 'series', 'burton', 'archive', 'film', 'superman', 'category', 'joker', 'united', 'author', 'accessdate', 'barry', 'returns', 'also', 'gotham', 'arizona', 'ya', 'batman', 'cyborg', 'news', 'penguin', 'blackadder', 'comics', 'work', 'daily', 'planet', 'movie', 'robin', 'warner'])
+[3104, 3106, 2781, 2763, 7100, 6308, 3109, 6105, 3107, 5835]
+3104 Batman (1989 film)
+3106 Batman Returns
+2781 Blackadder
+2763 British National Party
+7100 EastEnders
+6308 Daily Planet
+3109 Batman: Year One
+6105 Don't ask, don't tell
+3107 Batman & Robin (film)
+5835 David Letterman
 
-Key terms:
-  set(['catwoman', 'series', 'one', 'states', 'year', 'burton', 'film', 'category', 'joker', 'united', 'accessdate', 'barry', 'goldwater', 'gotham', 'ya', 'batman', 'cyborg', 'date', 'news', 'penguin', 'blackadder', 'name', 'comics', 'work', 'daily', 'planet', '2008', 'warner', 'robin', 'first'])
-
-Second pass:
-  [3104, 3106, 2763, 2781, 7100, 4497, 3622, 6105, 3314, 5835]
-  3104 Batman (1989 film)
-  3106 Batman Returns
-  2763 British National Party
-  2781 Blackadder
-  7100 EastEnders
-  4497 Cleveland Browns
-  3622 Columbia River
-  6105 Don't ask, don't tell
-  3314 Ballarat
-  5835 David Letterman
+```
+* Query: Ansible
+  * 
+```
+[1234, 7096, 4682, 6356, 2672]
+1234 Ansible
+7096 Talk:Electrochemistry
+4682 Talk:Computer architecture
+6356 Talk:List of deities
+2672 Talk:Utility knife
+set(['comment', 'list', 'assembler', 'one', 'computer', 'stanley', 'contributions', 'special', 'utility', 'would', 'god', 'jan', 'deities', 'knife', 'cutter', 'used', 'user', 'article', 'name', 'box', 'utc', 'like', 'm', 'page', 'april', 'ansible', 'knives', 'architecture', 'think', 'talk'])
+[7022, 2048, 595, 5964, 2528, 5043, 1042, 607, 3579, 6276]
+7022 Talk:Elvis Presley/Archive 23
+2048 Talk:Attribution of recent climate change
+595 Talk:Ada Lovelace
+5964 Talk:Diagnostic and Statistical Manual of Mental Disorders
+2528 Talk:Biblical canon
+5043 Talk:Computer science
+1042 Talk:The Ashes
+607 Talk:Aircraft
+3579 Talk:Communism/Archive 8
+6276 Talk:Digital subscriber line
 ```
 ##Larger dataset (~600MB)
 
