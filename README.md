@@ -25,6 +25,11 @@ sh reformat_all.sh numberOfMapper
 Before running, you might need to install the following package
 nltk
 
+##Command:
+```
+sh runHadoop.sh src/invertedIndexBuilder
+```
+
 #Run indexer on local machine
 For testing purpose.
 ##command
@@ -32,10 +37,6 @@ For testing purpose.
 sh runLocal.sh <data source> <indexer source>
 ```
 
-##Command:
-```
-sh runHadoop.sh src/invertedIndexBuilder
-```
 #Run the online query file
 
 ##command
