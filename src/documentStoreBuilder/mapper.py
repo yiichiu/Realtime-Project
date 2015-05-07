@@ -27,7 +27,7 @@ for page in root.findall(NS + 'page'):
     tokens = tokenizer.tokenize(text)
     #remove stopwords
     stopwords = nltk.corpus.stopwords.words('english')
-    moreSW = ['www', 'web', 'ref', 'cite', 'http', 'br', 'url', 'com', 'title', 'org']
+    moreSW = ['www', 'web', 'ref', 'cite', 'http', 'br', 'url', 'com', 'title', 'org', 'html']
     stopwords += moreSW
     content = [w for w in tokens if w.lower() not in stopwords]
     newText = ''
@@ -40,4 +40,4 @@ for page in root.findall(NS + 'page'):
     print "%s\t%s,%s,%s" % ( docid, title, text, url)
     #print "%s\t%s,%s,%s" % ( docid, title, newText, url)
   except:
-    print 'no doc'
+    pass
