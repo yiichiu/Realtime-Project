@@ -1,13 +1,14 @@
 # Realtime and Big Data Analysis final project
 Build a search engine with semantic results
 
-##Data Source: Wikipedia
-[wikipedia dump](https://dumps.wikimedia.org/enwikinews/20150426/)
-* 2015-04-26 11:30:56 done All pages, current versions only.
+##Data Source: Wikimedia
+[enwiki dump progress on 20150403](https://dumps.wikimedia.org/enwiki/20150403/)
+* 2015-04-06 22:06:17 done Recombine articles, templates, media/file descriptions, and primary meta-pages.
+  * [enwiki-20150403-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/20150403/enwiki-20150403-pages-articles.xml.bz2) 11.0 GB
 
 ##For Testing purpose, we are using a smaller dataset
-[wikipdeia dump strategywiki](https://dumps.wikimedia.org/strategywiki/20150424/)
-* 2015-04-24 13:31:37 done All pages, current versions only.
+[enwiki-20150403-pages-articles8.xml-p000465001p000665000.bz2](https://dumps.wikimedia.org/enwiki/20150403/enwiki-20150403-pages-articles8.xml-p000465001p000665000.bz2) 198.6 MB
+* 2015-04-06 18:55:44 done Articles, templates, media/file descriptions, and primary meta-pages.
 
 #Reformat input files into N partitions
 Before partitioning, you might need to install the following argparse first
@@ -23,6 +24,13 @@ sh reformat_all.sh numberOfMapper
 #Run indexer on hadoop cluster
 Before running, you might need to install the following package
 nltk
+
+#Run indexer on local machine
+For testing purpose.
+##command
+```
+sh runLocal.sh <data source> <indexer source>
+```
 
 ##Command:
 ```
