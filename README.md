@@ -3,12 +3,15 @@ Build a search engine with semantic results
 
 ##Data Source: Wikimedia
 [enwiki dump progress on 20150403](https://dumps.wikimedia.org/enwiki/20150403/)
-* 2015-04-06 22:06:17 done Recombine articles, templates, media/file descriptions, and primary meta-pages.
-  * [enwiki-20150403-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/20150403/enwiki-20150403-pages-articles.xml.bz2) 11.0 GB
 
-##For Testing purpose, we are using a smaller dataset
-[enwiki-20150403-pages-articles8.xml-p000465001p000665000.bz2](https://dumps.wikimedia.org/enwiki/20150403/enwiki-20150403-pages-articles8.xml-p000465001p000665000.bz2) 198.6 MB
-* 2015-04-06 18:55:44 done Articles, templates, media/file descriptions, and primary meta-pages.
+### The whole corpus 
+[enwiki-20150403-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/20150403/enwiki-20150403-pages-articles.xml.bz2) 11.0 GB -> ~50GB
+
+###Medium corpus
+[enwiki-20150403-pages-meta-current19.xml-p009225001p011125000.bz2](https://dumps.wikimedia.org/enwiki/20150403/enwiki-20150403-pages-meta-current19.xml-p009225001p011125000.bz2) 765.2 MB ~ 1.4GB
+
+###Small corpus
+[enwiki-20150403-pages-articles8.xml-p000465001p000665000.bz2](https://dumps.wikimedia.org/enwiki/20150403/enwiki-20150403-pages-articles8.xml-p000465001p000665000.bz2) 198.6 MB ~ 736MB
 
 #Reformat input files into N partitions
 Before partitioning, you might need to install the following argparse first
