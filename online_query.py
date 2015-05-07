@@ -48,22 +48,30 @@ def get_document_id(phrase_to_search):
     top_docs = [k for (k,v) in reversed(sorted(all_docs, key=lambda x:x[1])[max(-10, -len(all_docs)):])]
     top_docs_set = set(top_docs)
 
+    def remove_reference(text):
+        idx = text.find('References')
+        if idx == -1:
+            return text
+        return text[:idx]
+
     top_docs_content = content_pairs.filter(lambda (k, v): k in top_docs_set)
-    top_docs_text = top_docs_content.map(lambda (k,v): v['text']).flatMap(lambda x: x.lower().split(' ')).map(lambda x: (x,1)).reduceByKey(lambda a, b: a+b)
-    top_words_sorted = [x for (x,y) in sorted(top_docs_text.join(idf_pairs).map(lambda (k,v): (k, v[0]*v[1])).collect(), key=lambda x: x[1])[-30:]]
+    top_docs_text = top_docs_content.map(lambda (k,v): remove_reference(v['text'])).flatMap(lambda x: x.lower().split(' ')).map(lambda x: (x,1)).reduceByKey(lambda a, b: a+b)
+    top_words_sorted = sorted(top_docs_text.join(idf_pairs).map(lambda (k,v): (k, v[0]*v[1])).collect(), key=lambda x: x[1])[-30:]
 
     '''
     top_docs_content = content_pairs.filter(lambda (k, v): k in top_docs_set)
     top_docs_text = top_docs_content.map(lambda (k,v): (k, v['text'])).flatMap(lambda (k,v): [(w,[k]) for w in v.lower().split(' ')]).reduceByKey(lambda a, b: a+b).map(lambda (k,v): (k, len(set(v))))
     top_words_sorted = [x for (x,y) in sorted(top_docs_text.join(idf_pairs).map(lambda (k,v): (k, v[0]*v[1])).collect(), key=lambda x: x[1])[-30:]]
     '''
-    top_words = set(top_words_sorted)
+    top_words_sorted.reverse()
+    top_words = dict(top_words_sorted)
 
     semantic_idf = dict(idf_pairs.filter(lambda (k,v): k in top_words).collect())
     def get_semantic_score(word_tf_list):
         total_score = 0
         for word, tf in word_tf_list:
-            total_score += tf*semantic_idf[word]
+            #total_score += tf*semantic_idf[word]
+            total_score += tf*top_words[word]
         return total_score
     
     semantic_related = tf_pairs.filter(lambda (k, v): k in top_words)
@@ -78,6 +86,7 @@ if phrase_to_search == '':
 #print "you entered %s" % (phrase_to_search)
 #phrase_to_search = 'staples'
 while phrase_to_search != 'EXIT':
+    phrase_to_search = phrase_to_search.lower()
     top_docs, top_words, semantic_top_docs = get_document_id(phrase_to_search)
     print top_docs
     for top_doc in top_docs:
